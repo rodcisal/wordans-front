@@ -1,16 +1,28 @@
 <script lang="ts">
 import type { PageData } from './$types';
 import { fade } from 'svelte/transition'
+import Moveable from "svelte-moveable";
+
+    let textOnShirt: string;
+
+    let frame = {
+      translate: [0,0],
+      rotate: 0,
+      transformOrigin: "50% 50%",
+    };
+
     export let data: PageData;
+    let target: any;
 
     let isShowingOptions: boolean = false;
     const toggleIsShowingOptions = () => isShowingOptions = !isShowingOptions
-
     const images: string[] = JSON.parse(data.images)
-
     let selectedImage: string = images[0]
-
     const changeSelectedImage = (newSelectedImage: string) => selectedImage = newSelectedImage
+
+    const addText = () => {
+      textOnShirt = 'España';
+    }
 
 </script>
 
@@ -44,9 +56,14 @@ import { fade } from 'svelte/transition'
         </div>
       </div>
     {/if}
+
+    {#if textOnShirt}
+      <div class="target absolute top-0.5 text-2xl" bind:this={target}>{textOnShirt}</div>
+    {/if}
   </div>
 
   <img src={selectedImage} />
+
 
 </section>
 
@@ -55,7 +72,9 @@ import { fade } from 'svelte/transition'
     <svg class="w-10 m-auto" id="_12-product" data-name="12-product" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.98 38.98"><path class="cls-1" d="M22.69 9.89a3.2 3.2 0 0 1-6.41 0h-6.4v5.47h2.76V29.1h13.7V15.35h2.76V9.89h-6.41Z"></path></svg>
     Product
   </div>
-  <div class="p-1 text-center text-sm  w-1/4">
+  <div 
+    on:click={addText}
+    class="p-1 text-center text-sm  w-1/4">
     <svg class="w-10 m-auto" id="_13-add-text" data-name="13-add-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.98 38.98"><path class="cls-1" d="M14.77 29.05v-2.54h3v-14h-3.82v4.08h-2.77V9.93H27.8v6.62H25v-4.08h-3.79v14h3v2.54h-9.44Z"></path></svg>
     Text
   </div>
@@ -68,6 +87,46 @@ import { fade } from 'svelte/transition'
     Add Art
   </div>
 </section>
+<Moveable
+    target={target}
+    originDraggable={true}
+    originRelative={true}
+    draggable={true}
+    throttleDrag={0}
+    startDragRotate={0}
+    throttleDragRotate={0}
+    zoom={1}
+    origin={true}
+    padding={{"left":0,"top":0,"right":0,"bottom":0}}
+    rotatable={true}
+    throttleRotate={0}
+    rotationPosition={"top"}
+    on:dragOriginStart={({ detail: e }) => {
+        e.dragStart && e.dragStart.set(frame.translate);
+    }}
+    on:dragOrigin={({ detail: e }) => {
+        frame.translate = e.drag.beforeTranslate;
+        frame.transformOrigin = e.transformOrigin;
+    }}
+    on:dragStart={({ detail: e }) => {
+        e.set(frame.translate);
+    }}
+    on:drag={({ detail: e }) => {
+        frame.translate = e.beforeTranslate;
+    }}
+    on:rotateStart={({ detail: e }) => {
+        e.set(frame.rotate);
+    }}
+    on:rotate={({ detail: e }) => {
+        frame.rotate = e.beforeRotate;
+    }}
+    on:render={({ detail: e }) => {
+        const { translate, rotate, transformOrigin } = frame;
+        e.target.style.transformOrigin = transformOrigin;
+        e.target.style.transform = `translate(${translate[0]}px, ${translate[1]}px)`
+            +  ` rotate(${rotate}deg)`;
+    }}
+/>
 
 
 <style>
