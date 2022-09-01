@@ -7,8 +7,10 @@
 
 <section class="w-submenu flex absolute left-0 right-0 bg-gray-600 color-white">
   <div class="text-white p-1 text-center text-sm w-1/4 cursor-pointer">
-    <svg class="w-10 m-auto" id="_12-product" data-name="12-product" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.98 38.98"><path class="cls-1" d="M22.69 9.89a3.2 3.2 0 0 1-6.41 0h-6.4v5.47h2.76V29.1h13.7V15.35h2.76V9.89h-6.41Z"></path></svg>
-    Product
+    <a href='./'>
+      <svg class="w-10 m-auto" id="_12-product" data-name="12-product" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.98 38.98"><path class="cls-1" d="M22.69 9.89a3.2 3.2 0 0 1-6.41 0h-6.4v5.47h2.76V29.1h13.7V15.35h2.76V9.89h-6.41Z"></path></svg>
+      Product
+    </a>
   </div>
   <div 
     on:click={addText}
