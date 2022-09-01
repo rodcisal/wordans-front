@@ -22,10 +22,13 @@
   const toggleIsShowingOptions = () => isShowingOptions = !isShowingOptions
   const images: string[] = JSON.parse(data.images)
   let selectedImage: string = images[0]
-  const changeSelectedImage = (newSelectedImage: string) => selectedImage = newSelectedImage
+  const changeSelectedImage = (newSelectedImage: string) => {
+    selectedImage = newSelectedImage
+    isShowingOptions = false
+  }
 
   const addText = () => {
-    isAddingText = true;
+    isAddingText = true
   }
 
   const saveCustomizedProduct = async () => {
@@ -96,19 +99,19 @@
       <div transition:fade class="w-submenu p-2 absolute top-10 right-1 bg-white border">
         <div 
           on:click={() => changeSelectedImage(images[0])}
-          class="flex align-middle items-center">
+          class="flex align-middle items-center cursor-pointer">
           <img class="w-10" src={images[0]} />
           <div class="m-1">Front</div>
         </div>
         <div 
           on:click={() => changeSelectedImage(images[1])}
-          class="flex align-middle items-center">
+          class="flex align-middle items-center cursor-pointer">
           <img class="w-10" src={images[1]} />
           <div class="m-1">Back</div>
         </div>
         <div 
           on:click={() => changeSelectedImage(images[2])}
-          class="flex align-middle items-center">
+          class="flex align-middle items-center cursor-pointer">
           <img class="w-10" src={images[2]} />
           <div class="m-1">Sleeve</div>
         </div>
