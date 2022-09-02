@@ -14,7 +14,7 @@
   </div>
   <div 
     on:click={addText}
-    class="text-white p-1 text-center text-sm  w-1/4 cursor-pointer">
+    class="text-white p-1 text-center text-sm  w-1/2 cursor-pointer">
     <svg class="w-10 m-auto" id="_13-add-text" data-name="13-add-text" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38.98 38.98"><path class="cls-1" d="M14.77 29.05v-2.54h3v-14h-3.82v4.08h-2.77V9.93H27.8v6.62H25v-4.08h-3.79v14h3v2.54h-9.44Z"></path></svg>
     Text
   </div>

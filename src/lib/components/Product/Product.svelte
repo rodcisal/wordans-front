@@ -23,8 +23,8 @@
   <div class="mt-4">
     <a
       href={`/products/${id}/customize`}
-      class="py-4 px-4 w-full block shadow-md text-center no-underline rounded-full font-bold text-sm btn-primary focus:outline-none active:shadow-none mr-2 bg-slate-400 text-white">
-      
+      class="py-4 px-4 w-full block shadow-md text-center no-underline rounded-full font-bold text-sm btn-primary focus:outline-none active:shadow-none mr-2 text-white bg-neutral-600">
+
       Customize
     </a>
   </div>

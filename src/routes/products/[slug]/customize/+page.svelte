@@ -123,7 +123,7 @@
     {/if}
   </div>
 
-  <img src={selectedImage} />
+  <img class="m-auto" src={selectedImage} />
 
   <div>
     <button 
